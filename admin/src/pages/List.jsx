@@ -9,6 +9,7 @@ const List = ({ token }) => {
   const fetchList = async () => {
     try {
       const response = await axios.get(backendUrl + "/api/product/list");
+      console.log(response.data);
       if (response.data.success) {
         setList(response.data.products);
       } else {
@@ -62,14 +63,17 @@ const List = ({ token }) => {
             key={index}
             className="grid grid-cols-[1fr_3fr_1fr] md:grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center gap-2 py-1 px-2 border text-sm"
           >
-            <img src={item.image[0]} alt={item.name} className="w-12" />
+            <img src={item.images[0]} alt={item.name} className="w-12" />
             <p>{item.name}</p>
             <p>{item.category}</p>
             <p>
               {currency}
               {item.price}
             </p>
-            <p className="text-right md:text-center cursor-pointer text-lg">
+            <p
+              onClick={() => removeProduct(item._id)}
+              className="text-right md:text-center cursor-pointer text-lg"
+            >
               X
             </p>
           </div>
