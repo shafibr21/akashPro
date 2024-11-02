@@ -16,8 +16,7 @@ const Product = () => {
     products.map((item) => {
       if (item._id === productId) {
         setProductData(item);
-        console.log(setProductData(item));
-        setImage(item.images ? item.images[0] : "");
+        setImage(item.images[0]);
         return null;
       }
     });
